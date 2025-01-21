@@ -1,0 +1,82 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colaboradores - Bentell </title>
+    <link rel="icon" href="{% static 'comuns/img_logo.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'home/aparelhos.css'%}">
+ 
+    
+</head>
+
+<body>
+  
+  {% if erro %}
+  <script>
+          alert("{{erro}}");
+          location.reload();
+  </script>
+{% endif %}
+
+
+
+
+  <div class="btn_home"> <a href="{% url 'home:index'%}"><img src="{% static 'home/img_logo.jpg'%}" alt=""></a></div>
+  <div class='img_fundo'><img id="img_logo"  src="{% static 'comuns/fundo.png'%}" alt="">
+  </div>  
+
+
+<h1>Colaboradores</h1>
+  <button id="adicionar_item" onclick="toogle();" >Adicionar colaborador</button>
+
+  <form class="adicionar_item" id="form_adicionar_item"  enctype="multipart/form-data" action="{% url 'home:cadastro_colaborador'%}" method="POST">
+    {% csrf_token %}
+
+    <input required name="nome" placeholder="Primeiro nome" type="text">
+    <input required name="email" type="email" placeholder="Email">
+    <input type="submit" value="Cadastrar">
+
+  </form>
+
+
+<div class="itens_lista">
+  {% for colaborador in colaboradores%}
+  <div class="item">
+    <h2><a href="{% url 'home:perfil' colaborador.id %}">{{colaborador.nome}} </a></h2>
+    <h2>Email: {{colaborador.email}}</h2>
+    {% if colaborador.celular %}
+    <h2>Modelo celular: {{colaborador.celular.modelo}}</h2>
+    <h2>Numero corporativo: {{colaborador.celular.numero}}</h2>
+    {%else%}
+    <h2>Numero: Não cadastrado</h2>
+    {%endif %}
+
+    {% if colaborador.computador %}
+    <h2>Computador: {{colaborador.computador.modelo}}
+      <h2>Patrimonio: {{colaborador.computador.patrimonio}}
+    {%else%}
+    <h2>Computador: Não cadastrado</h2>
+    {%endif %}
+    
+
+    <a class="excluir_item" onclick="toogle_span('{{colaborador.id}}');" >X</a>
+  </div> 
+  <span id='confirmar_exclusao_{{ colaborador.id }}' class="confirmar_exclusao"> 
+    Tem certeza que deseja prosseguir com a exclusão do usuario {{ colaborador.nome }}?
+    <div>
+        <a href="{% url 'home:excluir_colaborador' colaborador.id %}"> 
+            <button>Sim</button>
+        </a>
+        <button onclick="toogle_span('{{colaborador.id}}');">Não</button>
+    </div>
+</span>
+{%endfor%}
+</div> 
+
+
+<script src="{% static 'comuns/jquery.js'%}"></script>
+<script src="{% static 'home/script.js'%}"></script>
+</body>
+</html>

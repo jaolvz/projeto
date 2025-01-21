@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computadores - Bentell </title>
+    <link rel="icon" href="{% static 'comuns/img_logo.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'home/aparelhos.css'%}">
+ 
+    
+</head>
+
+<body>
+  
+   <div class="btn_home"> <a href="{% url 'home:index'%}"><img src="{% static 'home/img_logo.jpg'%}" alt=""></a></div>
+
+  <div class='img_fundo'><img id="img_logo"  src="{% static 'comuns/fundo.png'%}" alt="">
+  </div>  
+
+
+<h1>Computadores</h1>
+  <button id="adicionar_item" onclick="toogle();" >Adicionar computador</button>
+
+  <form class="adicionar_item" id="form_adicionar_item" action="{% url 'home:adicionar_computador'%}" method="POST">
+    {% csrf_token %}
+
+    <input name="modelo" type="text" placeholder="Modelo do aparelho">
+    <input name="patrimonio" placeholder="patrimonio" type="text">
+    <label for="colaborador">Colaborador responsavel</label>
+    <select id="colaborador" name="responsavel">
+      {%for c in colaboradores %}
+      <option value="{{c.id}}">{{c.nome}}</option>
+      {%endfor%}
+      </select>
+
+    <input type="submit" value="Cadastrar">
+
+  </form>
+
+  
+  <div class="itens_lista">
+    {% for computador in computadores %}
+    <div class="item">
+      <h2>Modelo: {{computador.modelo}}</h2>
+      <h2>patrimonio: {{computador.patrimonio}}</h2>
+      <h2>Responsavel: {{computador.responsavel.nome  }}</h2>
+    </div> 
+  {%endfor%}
+  </div> 
+
+
+<script src="{% static 'comuns/jquery.js'%}"></script>
+<script src="{% static 'home/script.js'%}"></script>
+</body>
+</html>

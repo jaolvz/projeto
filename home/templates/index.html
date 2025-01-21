@@ -1,0 +1,27 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bentell SCO - ESTOQUE </title>
+    <link rel="icon" href="{% static 'comuns/img_logo.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'home/index.css'%}">
+
+</head>
+<body>
+
+
+        <img src="{% static 'home/img_logo.jpg'%}" alt="logo_bentell">
+        <div class="buttons">
+           <a href="{% url 'home:celulares'%}">Celulares</a>
+        
+           <a href="{% url 'home:colaboradores'%}">Colaboradores</a>
+           <a href="{% url 'home:computadores'%}">Computadores</a>
+
+    
+        
+</div>
+
+</body>
+</html>

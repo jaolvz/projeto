@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'comuns/img_logo.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'home/perfil.css'%}">
+ 
+    <title>{{colaborador.nome}}</title>
+</head>
+<body>
+
+    <div class="btn_home"> <a href="{% url 'home:index'%}"><img src="{% static 'home/img_logo.jpg'%}" alt=""></a></div>
+    <div class='img_fundo'><img id="img_logo"  src="{% static 'comuns/fundo.png'%}" alt=""></div>
+
+
+    <h1>{{colaborador.nome}}</h1>
+    <h3>{{colaborador.email}}</h3>
+
+
+    <div class="celular">
+        <h1>Celular</h1>
+        <h4>Modelo: {{colaborador.celular.modelo}}</h4>
+        <h4>Número corporativo: {{colaborador.celular.numero}}</h4>
+
+    </div>
+
+    <div class="computador"> <h1>Computador</h1>
+    <h4>Modelo: {{colaborador.computador.modelo}}</h4>
+    <h4>Patrimonio: {{colaborador.computador.patrimonio}}</h4>
+    </div>
+
+
+
+</body>
+</html>
