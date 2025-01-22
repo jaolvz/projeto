@@ -16,6 +16,8 @@ def celulares(request):
 
 def computadores(request):
     colaboradores = Colaborador.objects.filter(computador=None)
+    estoque = Colaborador.objects.filter(nome='Estoque')
+    colaboradores = colaboradores | estoque
     computadores = Computador.objects.all()
     contexto = {'colaboradores':colaboradores,'computadores': computadores}
     return render(request,'computadores.html', contexto)
@@ -26,16 +28,27 @@ def colaboradores(request):
       
 
 def perfil  (request, id):
-    colaborador  = get_object_or_404(Colaborador, id=id);
+    colaborador  = get_object_or_404(Colaborador, id=id)
     return render (request, 'perfil.html', {'colaborador':colaborador})
 
 
 
 def excluir_colaborador(request,id):
     colaborador = get_object_or_404(Colaborador, id=id)
-    nome = colaborador.nome
     colaborador.delete()
     return redirect('home:colaboradores')
+
+def excluir_computador(request,id):
+    computador = get_object_or_404(Computador, id=id)
+    computador.delete()
+    return redirect('home:computadores')
+
+def excluir_celular(request,id):
+    celular = get_object_or_404(Celular, id=id)
+    celular.delete()
+    return redirect('home:celulares')
+
+
 
 
 def adicionar_computador(request):
@@ -43,8 +56,10 @@ def adicionar_computador(request):
         responsavel_id = request.POST.get('responsavel')
         modelo = request.POST.get('modelo')
         patrimonio = request.POST.get('patrimonio')
+        processador = request.POST.get('processador')
+        memoria = request.POST.get('qtd_memoria')
         responsavel =get_object_or_404(Colaborador, id= responsavel_id)
-        celular = Computador.objects.create(responsavel=responsavel, patrimonio=patrimonio,modelo=modelo)
+        celular = Computador.objects.create(responsavel=responsavel, patrimonio=patrimonio,modelo=modelo, processador= processador, quantidade_memoria = memoria)
         return redirect('home:computadores')
     else:
         return render(request,'home.html')
@@ -66,10 +81,10 @@ def adicionar_colaborador(request): #feito
 def adicionar_celular (request):#feito
     if request.method == 'POST':
         responsavel_id = request.POST.get('responsavel')
-        modelo = request.POST.get('modelo')
+        modelo_celular = request.POST.get('modelo')
         numero = request.POST.get('numero')
         responsavel =get_object_or_404(Colaborador, id= responsavel_id)
-        celular = Celular.objects.create(responsavel=responsavel, modelo=modelo,numero=numero)
+        celular = Celular.objects.create(responsavel=responsavel, modelo=modelo_celular,numero=numero)
         return redirect('home:celulares')
     else:
         return render(request,'home.html')

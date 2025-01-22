@@ -11,7 +11,8 @@ urlpatterns = [
     path('adicionar_computador/', views.adicionar_computador, name='adicionar_computador'), 
     path('perfil/<int:id>/', views.perfil, name='perfil'),
     path('cadastro_colaborador/', views.adicionar_colaborador, name='cadastro_colaborador'),
-    path('excluir_colaborador/<int:id>/', views.excluir_colaborador, name='excluir_colaborador')
-
+    path('excluir_computador/<int:id>/', views.excluir_computador, name='excluir_computador'),
+    path('excluir_celular/<int:id>/', views.excluir_celular, name='excluir_celular'),
+     path('excluir_colaborador/<int:id>/', views.excluir_colaborador, name='excluir_colaborador'),
 ]
 

@@ -13,7 +13,7 @@
 
 <body>
   
-   <div class="btn_home"> <a href="{% url 'home:index'%}"><img src="{% static 'home/img_logo.jpg'%}" alt=""></a></div>
+   <div class="btn_home"> <a href="{% url 'home:index'%}"><img  src="{% static 'home/img_logo.jpg'%}" alt=""></a></div>
 
   <div class='img_fundo'><img id="img_logo"  src="{% static 'comuns/fundo.png'%}" alt="">
   </div>  
@@ -26,7 +26,11 @@
     {% csrf_token %}
 
     <input name="modelo" type="text" placeholder="Modelo do aparelho">
-    <input name="patrimonio" placeholder="patrimonio" type="text">
+    <input name="patrimonio" placeholder="Patrimonio" type="text">
+    <input name='processador' placeholder="Processador" type="text">
+    <input type="text" name="qtd_memoria" placeholder="Quantidade de memória">
+
+
     <label for="colaborador">Colaborador responsavel</label>
     <select id="colaborador" name="responsavel">
       {%for c in colaboradores %}
@@ -45,9 +49,26 @@
       <h2>Modelo: {{computador.modelo}}</h2>
       <h2>patrimonio: {{computador.patrimonio}}</h2>
       <h2>Responsavel: {{computador.responsavel.nome  }}</h2>
+      <h2>Processador : {{computador.processador}}</h2>
+      <h2>Memória: {{computador.quantidade_memoria}}</h2>
+
+      <a class="excluir_item" onclick="toogle_span('{{computador.id}}');" >X</a>
+      <span id='confirmar_exclusao_{{computador.id }}' class="confirmar_exclusao"> 
+        Tem certeza que deseja prosseguir com a exclusão do computador {{computador.modelo}}?
+        <div>
+            <a href="{% url 'home:excluir_computador' computador.id %}"> 
+                <button>Sim</button>
+            </a>
+            <button onclick="toogle_span('{{computador.id}}');">Não</button>
+        </div>
+    </span>
     </div> 
-  {%endfor%}
+
+
+    {%endfor%}
   </div> 
+  
+ 
 
 
 <script src="{% static 'comuns/jquery.js'%}"></script>

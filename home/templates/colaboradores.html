@@ -60,18 +60,18 @@
     <h2>Computador: Não cadastrado</h2>
     {%endif %}
     
-
     <a class="excluir_item" onclick="toogle_span('{{colaborador.id}}');" >X</a>
+    <span id='confirmar_exclusao_{{ colaborador.id }}' class="confirmar_exclusao"> 
+      Tem certeza que deseja prosseguir com a exclusão do usuario {{ colaborador.nome }}?
+      <div>
+          <a href="{% url 'home:excluir_colaborador' colaborador.id %}"> 
+              <button>Sim</button>
+          </a>
+          <button onclick="toogle_span('{{colaborador.id}}');">Não</button>
+      </div>
+  </span>
   </div> 
-  <span id='confirmar_exclusao_{{ colaborador.id }}' class="confirmar_exclusao"> 
-    Tem certeza que deseja prosseguir com a exclusão do usuario {{ colaborador.nome }}?
-    <div>
-        <a href="{% url 'home:excluir_colaborador' colaborador.id %}"> 
-            <button>Sim</button>
-        </a>
-        <button onclick="toogle_span('{{colaborador.id}}');">Não</button>
-    </div>
-</span>
+
 {%endfor%}
 </div> 
 

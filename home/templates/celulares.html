@@ -13,7 +13,7 @@
 
 <body>
   
-  <div class="btn_home"> <a href="{% url 'home:index'%}"><img src="{% static 'home/img_logo.jpg'%}" alt=""></a></div>
+  <div class="btn_home"> <a href="{% url 'home:index'%}"><img  src="{% static 'home/img_logo.jpg'%}" alt=""></a></div>
   <div class='img_fundo'><img id="img_logo"  src="{% static 'comuns/fundo.png'%}" alt="">
   </div>  
 
@@ -40,11 +40,22 @@
 
   
   <div class="itens_lista">
-    {% for celular in celulares%}
+  {% for celular in celulares%}
     <div class="item">
       <h2>Modelo: {{celular.modelo}}</h2>
       <h2>Numero: {{celular.numero}}</h2>
-      <h2>Responsavel: {{celular.responsavel.nome  }}</h2>
+      <h2>Responsavel: {{celular.responsavel.nome}}</h2>
+
+      <a class="excluir_item" onclick="toogle_span('{{celular.id}}');" >X</a>
+      <span id='confirmar_exclusao_{{celular.id }}' class="confirmar_exclusao"> 
+        Tem certeza que deseja prosseguir com a exclusão do celular {{celular.modelo}}?
+        <div>
+            <a href="{% url 'home:excluir_celular' celular.id %}"> 
+                <button>Sim</button>
+            </a>
+            <button onclick="toogle_span('{{celular.id}}');">Não</button>
+        </div>
+    </span>
     </div> 
   {%endfor%}
   </div> 
