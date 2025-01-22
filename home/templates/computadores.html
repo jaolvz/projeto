@@ -48,7 +48,7 @@
     <div class="item">
       <h2>Modelo: {{computador.modelo}}</h2>
       <h2>patrimonio: {{computador.patrimonio}}</h2>
-      <h2>Responsavel: {{computador.responsavel.nome  }}</h2>
+      <h2>Responsavel: <a href="{% url 'home:perfil' computador.responsavel.id %}">{{computador.responsavel.nome}} </a></h2>
       <h2>Processador : {{computador.processador}}</h2>
       <h2>Memória: {{computador.quantidade_memoria}}</h2>
 

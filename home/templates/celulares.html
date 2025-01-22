@@ -44,7 +44,7 @@
     <div class="item">
       <h2>Modelo: {{celular.modelo}}</h2>
       <h2>Numero: {{celular.numero}}</h2>
-      <h2>Responsavel: {{celular.responsavel.nome}}</h2>
+      <h2>Responsavel: <a href="{% url 'home:perfil' celular.responsavel.id %}">{{celular.responsavel.nome}}</h2>
 
       <a class="excluir_item" onclick="toogle_span('{{celular.id}}');" >X</a>
       

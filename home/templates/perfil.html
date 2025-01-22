@@ -47,7 +47,7 @@
         {%endif%}
         {% for computador in colaborador.computadores.all %}
         <h4>Modelo: {{computador.modelo}}</h4>
-        <h4>Patrimonio: {{computador.numero}}</h4>
+        <h4>Patrimonio: {{computador.patrimonio}}</h4>
         {% empty %}
           <h5>Nenhum computador vinculado ao usuário.</h5>
         {%endfor%}
