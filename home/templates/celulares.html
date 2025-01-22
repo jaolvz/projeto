@@ -47,16 +47,17 @@
       <h2>Responsavel: {{celular.responsavel.nome}}</h2>
 
       <a class="excluir_item" onclick="toogle_span('{{celular.id}}');" >X</a>
-      <span id='confirmar_exclusao_{{celular.id }}' class="confirmar_exclusao"> 
-        Tem certeza que deseja prosseguir com a exclusão do celular {{celular.modelo}}?
-        <div>
-            <a href="{% url 'home:excluir_celular' celular.id %}"> 
-                <button>Sim</button>
-            </a>
-            <button onclick="toogle_span('{{celular.id}}');">Não</button>
-        </div>
-    </span>
+      
     </div> 
+    <span id='confirmar_exclusao_{{celular.id }}' class="confirmar_exclusao"> 
+      Tem certeza que deseja prosseguir com a exclusão do celular {{celular.modelo}}?
+      <div>
+          <a href="{% url 'home:excluir_celular' celular.id %}"> 
+              <button>Sim</button>
+          </a>
+          <button onclick="toogle_span('{{celular.id}}');">Não</button>
+      </div>
+  </span>
   {%endfor%}
   </div> 
 

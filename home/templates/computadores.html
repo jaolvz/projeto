@@ -53,18 +53,18 @@
       <h2>Memória: {{computador.quantidade_memoria}}</h2>
 
       <a class="excluir_item" onclick="toogle_span('{{computador.id}}');" >X</a>
-      <span id='confirmar_exclusao_{{computador.id }}' class="confirmar_exclusao"> 
-        Tem certeza que deseja prosseguir com a exclusão do computador {{computador.modelo}}?
-        <div>
-            <a href="{% url 'home:excluir_computador' computador.id %}"> 
-                <button>Sim</button>
-            </a>
-            <button onclick="toogle_span('{{computador.id}}');">Não</button>
-        </div>
-    </span>
+     
     </div> 
 
-
+    <span id='confirmar_exclusao_{{computador.id }}' class="confirmar_exclusao"> 
+      Tem certeza que deseja prosseguir com a exclusão do computador {{computador.modelo}}?
+      <div>
+          <a href="{% url 'home:excluir_computador' computador.id %}"> 
+              <button>Sim</button>
+          </a>
+          <button onclick="toogle_span('{{computador.id}}');">Não</button>
+      </div>
+  </span>
     {%endfor%}
   </div> 
   

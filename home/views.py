@@ -9,13 +9,13 @@ import os
 def index(request):
     return render(request,'index.html')
 def celulares(request):
-    colaboradores = Colaborador.objects.filter(celular=None)
+    colaboradores = Colaborador.objects.filter(celulares=None)
     celulares = Celular.objects.all()
     contexto = {'colaboradores':colaboradores,'celulares': celulares}
     return render(request,'celulares.html', contexto)
 
 def computadores(request):
-    colaboradores = Colaborador.objects.filter(computador=None)
+    colaboradores = Colaborador.objects.filter(computadores=None)
     estoque = Colaborador.objects.filter(nome='Estoque')
     colaboradores = colaboradores | estoque
     computadores = Computador.objects.all()

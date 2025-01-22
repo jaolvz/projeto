@@ -16,19 +16,41 @@
 
 
     <h1>{{colaborador.nome}}</h1>
+    {% if colaborador.nome != 'Estoque' %}
     <h3>{{colaborador.email}}</h3>
+    {%endif%}
+
 
 
     <div class="celular">
+
+        {% if colaborador.nome != 'Estoque' %}
         <h1>Celular</h1>
-        <h4>Modelo: {{colaborador.celular.modelo}}</h4>
-        <h4>Número corporativo: {{colaborador.celular.numero}}</h4>
+        {%else%}
+        <h1>Celulares</h1>
+        {%endif%}
+        {% for celular in colaborador.celulares.all %}
+        <h4>Modelo: {{celular.modelo}}</h4>
+        <h4>Número corporativo: {{celular.numero}}</h4>
+        {% empty %}
+        <h5>Nenhum celular vinculado ao usuário.</h5>
+        {%endfor%}
 
     </div>
 
-    <div class="computador"> <h1>Computador</h1>
-    <h4>Modelo: {{colaborador.computador.modelo}}</h4>
-    <h4>Patrimonio: {{colaborador.computador.patrimonio}}</h4>
+    <div class="computador"> 
+        {% if colaborador.nome != 'Estoque' %}
+        <h1>Computador</h1>
+        {%else%}
+        <h1>Computadores</h1>
+>
+        {%endif%}
+        {% for computador in colaborador.computadores.all %}
+        <h4>Modelo: {{computador.modelo}}</h4>
+        <h4>Patrimonio: {{computador.numero}}</h4>
+        {% empty %}
+          <h5>Nenhum computador vinculado ao usuário.</h5>
+        {%endfor%}
     </div>
 
 

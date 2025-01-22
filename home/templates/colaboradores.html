@@ -46,32 +46,36 @@
   <div class="item">
     <h2><a href="{% url 'home:perfil' colaborador.id %}">{{colaborador.nome}} </a></h2>
     <h2>Email: {{colaborador.email}}</h2>
-    {% if colaborador.celular %}
-    <h2>Modelo celular: {{colaborador.celular.modelo}}</h2>
-    <h2>Numero corporativo: {{colaborador.celular.numero}}</h2>
-    {%else%}
-    <h2>Numero: Não cadastrado</h2>
-    {%endif %}
+    <br>
+    <h2>Celular</h2>
+    {% for celular in colaborador.celulares.all %}
+    <h2>Modelo celular: {{celular.modelo}}</h2>
+    <h2>Numero corporativo: {{celular.numero}}</h2>
+    {% empty %}
+    <h5>Nenhum celular vinculado ao usuário.</h5>
+    {%endfor %}
+    <br>
 
-    {% if colaborador.computador %}
-    <h2>Computador: {{colaborador.computador.modelo}}
-      <h2>Patrimonio: {{colaborador.computador.patrimonio}}
-    {%else%}
-    <h2>Computador: Não cadastrado</h2>
-    {%endif %}
+    <h2>Computador</h2>
+    {% for computador in colaborador.computadores.all %}
+    <h2>Computador: {{computador.modelo}}
+      <h2>Patrimonio: {{computador.patrimonio}}
+        {% empty %}
+          <h5>Nenhum computador vinculado ao usuário.</h5>
+    {%endfor %}
     
     <a class="excluir_item" onclick="toogle_span('{{colaborador.id}}');" >X</a>
-    <span id='confirmar_exclusao_{{ colaborador.id }}' class="confirmar_exclusao"> 
-      Tem certeza que deseja prosseguir com a exclusão do usuario {{ colaborador.nome }}?
-      <div>
-          <a href="{% url 'home:excluir_colaborador' colaborador.id %}"> 
-              <button>Sim</button>
-          </a>
-          <button onclick="toogle_span('{{colaborador.id}}');">Não</button>
-      </div>
-  </span>
+  
   </div> 
-
+  <span id='confirmar_exclusao_{{ colaborador.id }}' class="confirmar_exclusao"> 
+    Tem certeza que deseja prosseguir com a exclusão do usuario {{ colaborador.nome }}?
+    <div>
+        <a href="{% url 'home:excluir_colaborador' colaborador.id %}"> 
+            <button>Sim</button>
+        </a>
+        <button onclick="toogle_span('{{colaborador.id}}');">Não</button>
+    </div>
+</span>
 {%endfor%}
 </div> 
 
