@@ -10,7 +10,7 @@ import os
 
 @login_required(login_url='home:login')
 def pagina_inicial(request):
-    return render(request,'index.html')
+    return render(request,'pagina_inicial.html')
 @login_required(login_url='home:login')
 def celulares(request):
     colaboradores = Colaborador.objects.filter(celulares=None)
@@ -37,7 +37,7 @@ def cadastro (request):
         if request.user.is_authenticated:
             return  redirect('home:pagina_inicial')
         else:
-            return render (request, 'login.html')
+            return render (request, 'cadastro.html')
     else:
         username_usuario = request.POST.get('usuario')
         senha = request.POST.get('senha')
@@ -49,7 +49,7 @@ def cadastro (request):
 def logar(request):
     if   request.method == 'GET':
         if request.user.is_authenticated:
-            return  render (request, 'index.html')
+            return  render (request, 'pagina_inicial.html')
         else:
             return render (request, 'login.html')
     else:
