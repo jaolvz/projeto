@@ -3,10 +3,14 @@ from . import views
 
 app_name = 'home'  
 urlpatterns = [
-    path('', views.index, name='index'),
+        path('', views.logar, name='login'),
+    path('cadastro/',views.cadastro,name='cadastro'),
+    path('pagina_inicial', views.pagina_inicial, name='pagina_inicial'),
+
     path('celulares/', views.celulares, name='celulares'),
     path('computadores/', views.computadores, name='computadores'),
     path('colaboradores/', views.colaboradores, name='colaboradores'),
+
     path('adicionar_celular/', views.adicionar_celular, name='adicionar_celular'), 
     path('adicionar_computador/', views.adicionar_computador, name='adicionar_computador'), 
     path('perfil/<int:id>/', views.perfil, name='perfil'),

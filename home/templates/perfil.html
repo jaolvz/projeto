@@ -11,7 +11,7 @@
 </head>
 <body>
 
-    <div class="btn_home"> <a href="{% url 'home:index'%}"><img src="{% static 'home/img_logo.jpg'%}" alt=""></a></div>
+    <div class="btn_home"> <a href="{% url 'home:pagina_inicial'%}"><img src="{% static 'home/img_logo.jpg'%}" alt=""></a></div>
     <div class='img_fundo'><img id="img_logo"  src="{% static 'comuns/fundo.png'%}" alt=""></div>
 
 
@@ -43,11 +43,12 @@
         <h1>Computador</h1>
         {%else%}
         <h1>Computadores</h1>
->
+
         {%endif%}
         {% for computador in colaborador.computadores.all %}
+
         <h4>Modelo: {{computador.modelo}}</h4>
-        <h4>Patrimonio: {{computador.patrimonio}}</h4>
+
         {% empty %}
           <h5>Nenhum computador vinculado ao usuário.</h5>
         {%endfor%}

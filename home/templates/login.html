@@ -1,0 +1,21 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Bentell </title>
+    <link rel="icon" href="{% static 'comuns/img_logo.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'home/aparelhos.css'%}">
+    <link rel="stylesheet" href="{% static 'home/cadastro.css'%}">
+</head>
+<body>
+    <h1>Login</h1>
+  <form class='form_cadastro'  method="POST" action="{% url 'home:login' %}">
+    {% csrf_token %} 
+    <input placeholder="Usuario" name="usuario" type="text">
+<input placeholder="Senha" type="password" name="senha" id="">
+    <input type="submit" value="Logar">
+  </form>
+</body>
+</html>
